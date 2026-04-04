@@ -127,6 +127,7 @@ return {
 		lualine.setup({
 			icons_enabled = true,
 			options = {
+				-- theme = "auto",
 				theme = my_lualine_theme,
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "|", right = "" },
@@ -149,6 +150,12 @@ return {
 					{ "filetype" },
 				},
 			},
+		})
+		vim.api.nvim_create_autocmd("BufEnter", {
+			pattern = "*.md",
+			callback = function()
+				require("lualine").refresh()
+			end,
 		})
 	end,
 }
